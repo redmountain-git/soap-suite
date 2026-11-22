@@ -10,7 +10,13 @@
       "!{projectRoot}/**/*.test.ts",
       "!{projectRoot}/tests/**/*"
     ],
-    "sharedGlobals": []
+    "sharedGlobals": [
+      "{workspaceRoot}/tsconfig.base.json",
+      "{workspaceRoot}/eslint.config.mjs",
+      "{workspaceRoot}/tools/build-lit-styles.mjs",
+      "{workspaceRoot}/tools/clean-package.mjs",
+      "{workspaceRoot}/tools/prepare-package.mjs"
+    ]
   },
   "targetDefaults": {
     "build": {

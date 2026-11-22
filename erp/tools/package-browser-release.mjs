@@ -14,19 +14,28 @@ import { fileURLToPath } from 'node:url';
 const tag = process.env.RELEASE_TAG;
 assert(/^v\d+\.\d+\.\d+$/.test(tag ?? ''), 'Set RELEASE_TAG to vX.Y.Z');
 const root = fileURLToPath(new URL('../', import.meta.url));
-const browser = join(root, 'dist/apps/operations/browser');
+const app = process.argv[2] ?? 'operations';
+assert(app === 'operations' || app === 'calculator', 'Unknown browser app');
+const base = app === 'operations' ? '/suite/' : '/calculator/';
+const browser = join(root, 'dist/apps', app, 'browser');
 const out = join(root, 'dist/releases');
 const index = await readFile(join(browser, 'index.html'), 'utf8');
 assert(
-  index.includes('<base href="/suite/">') &&
+  index.includes('<base href="' + base + '">') &&
     !index.includes('name="soap-suite-workspace"'),
 );
 const worker = JSON.parse(await readFile(join(browser, 'ngsw.json'), 'utf8'));
-assert.equal(worker.index, '/suite/index.html');
-assert(Object.keys(worker.hashTable).every((url) => url.startsWith('/suite/')));
+assert.equal(worker.index, base + 'index.html');
+assert(Object.keys(worker.hashTable).every((url) => url.startsWith(base)));
+const pwa = JSON.parse(
+  await readFile(join(browser, 'manifest.webmanifest'), 'utf8'),
+);
+const mount = new URL(base, 'https://example.invalid');
+assert.equal(new URL(pwa.scope, mount).href, mount.href);
+assert.equal(new URL(pwa.start_url, mount).href, mount.href);
 // Angular's asset copier may omit dotfiles. Keep the SPA fallback in this directory only.
 await copyFile(
-  join(root, 'apps/operations/public/.htaccess'),
+  join(root, 'apps', app, 'public/.htaccess'),
   join(browser, '.htaccess'),
 );
 await copyFile(
@@ -48,7 +57,11 @@ for (const entry of await readdir(browser, {
   );
 }
 await mkdir(out, { recursive: true });
-const name = 'soap-suite-browser-' + tag + '.tar.gz';
+const prefix =
+  app === 'operations'
+    ? 'soap-suite-browser-'
+    : 'red-mountain-soap-calculator-';
+const name = prefix + tag + '.tar.gz';
 const path = join(out, name);
 execFileSync('tar', ['-czf', path, '-C', browser, '.']);
 const digest = createHash('sha256')

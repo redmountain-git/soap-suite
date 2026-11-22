@@ -8,6 +8,20 @@ const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '../../..');
 const widgetSrc = join(repoRoot, 'packages/vector-widgets/src');
 const legacyAppSrc = join(repoRoot, 'app/src');
 
+test('the calculator and suite resolve the same widget entry point', () => {
+  const config = JSON.parse(
+    readFileSync(join(repoRoot, 'tsconfig.base.json'), 'utf8'),
+  ) as { compilerOptions: { paths: Record<string, string[]> } };
+  const paths = config.compilerOptions.paths;
+  assert.deepEqual(paths['@redmountainsoap/vector-widgets'], [
+    'packages/vector-widgets/src/index.ts',
+  ]);
+  assert.deepEqual(
+    paths['@rmsc/vector-widgets'],
+    paths['@redmountainsoap/vector-widgets'],
+  );
+});
+
 test('vector-widgets stays domain and framework agnostic', () => {
   const indexSource = readFileSync(join(widgetSrc, 'index.ts'), 'utf8');
   assert.doesNotMatch(
@@ -25,6 +39,11 @@ test('vector-widgets stays domain and framework agnostic', () => {
     assert.doesNotMatch(
       source,
       /from\s+["']@rmsc\/domain-core["']/,
+      relative(repoRoot, file),
+    );
+    assert.doesNotMatch(
+      source,
+      /from\s+["']@redmountainsoap\/calculator-/,
       relative(repoRoot, file),
     );
     assert.doesNotMatch(

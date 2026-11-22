@@ -1,0 +1,49 @@
+<div class="calculator-shell">
+  <header class="calculator-header">
+    <a class="calculator-brand" href="https://redmountainsoap.com/">
+      <img src="./icons/icon.svg" alt="" width="44" height="44" />
+      <span>
+        <strong>Red Mountain Soap</strong>
+        <small>Recipe tools</small>
+      </span>
+    </a>
+
+    <div class="calculator-heading">
+      <p class="calculator-eyebrow">Soap Recipe Calculator</p>
+      <h1>Design and balance a soap recipe</h1>
+      <p>
+        Adjust oils, formulation settings, and additives while the visual tools
+        show how the recipe changes.
+      </p>
+      <p
+        class="calculator-status"
+        [class.warning]="state.statusIsError()"
+        aria-live="polite"
+      >
+        {{ state.status() }}
+      </p>
+      <button class="calculator-reset" type="button" (click)="state.reset()">
+        Reset demo recipe
+      </button>
+    </div>
+  </header>
+
+  <main class="calculator-workspace">
+    <section aria-label="Recipe designer">
+      <recipe-vector-workbench
+        [document]="state.document()"
+        (calculator-change)="onCalculatorChange($event)"
+      ></recipe-vector-workbench>
+    </section>
+
+    <aside class="calculator-safety" aria-labelledby="calculator-safety-title">
+      <h2 id="calculator-safety-title">Safety and data note</h2>
+      <p>
+        This calculator is an educational formulation aid, not a substitute for
+        independent lye calculations, supplier data, protective equipment, or
+        established soapmaking safety procedures. Reference values are
+        approximate defaults and recipes are stored only in your browser.
+      </p>
+    </aside>
+  </main>
+</div>

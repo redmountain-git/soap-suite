@@ -1,0 +1,35 @@
+{
+  "name": "@redmountainsoap/calculator-workbench",
+  "version": "0.1.0",
+  "description": "The recipe-vector-workbench custom element for Red Mountain Soap Calculator.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": true,
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./src/index.js"
+    }
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "@redmountainsoap/calculator-core": "0.1.0",
+    "@redmountainsoap/vector-widgets": "0.1.0",
+    "lit": "^3.3.3"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/redmountain-git/soap-suite.git",
+    "directory": "erp/packages/calculator-workbench"
+  }
+}

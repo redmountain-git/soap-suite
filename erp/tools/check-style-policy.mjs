@@ -5,6 +5,8 @@ import { fileURLToPath } from 'node:url';
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '..');
 const roots = [
   join(repoRoot, 'packages/vector-widgets/src'),
+  join(repoRoot, 'packages/calculator-workbench/src'),
+  join(repoRoot, 'apps/calculator/src'),
   join(repoRoot, 'apps/operations/src'),
 ];
 const violations = [];

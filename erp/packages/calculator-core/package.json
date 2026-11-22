@@ -1,0 +1,30 @@
+{
+  "name": "@redmountainsoap/calculator-core",
+  "version": "0.1.0",
+  "description": "Pure formulation math, types, validation, and educational reference defaults for Red Mountain Soap Calculator.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./src/index.js"
+    }
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/redmountain-git/soap-suite.git",
+    "directory": "erp/packages/calculator-core"
+  }
+}

@@ -13,9 +13,13 @@ npm run dev
 
 Open [Operations](http://localhost:4200/). For the older Vite app, run `npm run dev:legacy -- --port 4173` and open [the prototype](http://127.0.0.1:4173/). Each origin has separate browser storage. Move records with **Settings & Data > Export / Review backup** in Operations. The designer's no-recipe example is a fictional olive, coconut and palm blend, not a production formula.
 
+Run `npm run dev:calculator` and open [Recipe Calculator](http://localhost:4318/calculator/).
+The standalone calculator and Operations use the same Lit widgets and style build,
+but keep separate formulation workflows and browser storage.
+
 ## Build and verify
 
-To build just Operations, run `npm run build` with the Node dependencies installed. Python is not required to use either browser app.
+Run `npm run build` for Operations or `npm run build:calculator` for the standalone calculator. Run `npm run check:calculator` to check the calculator, local packages, and browser workflows. Python is not required to use either browser app.
 
 For the full checks, install Python 3 and Git. From `erp/`, create a virtual environment with `python -m venv .venv` (use `python3` where that is the Python 3 command). Activate it with `.\.venv\Scripts\Activate.ps1` in PowerShell or `. .venv/bin/activate` in a POSIX shell, then run:
 

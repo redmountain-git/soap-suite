@@ -6,6 +6,7 @@ import * as sass from 'sass';
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '..');
 const roots = [
   join(repoRoot, 'packages/vector-widgets/src'),
+  join(repoRoot, 'packages/calculator-workbench/src'),
   join(repoRoot, 'apps/operations/src/app/features'),
 ];
 

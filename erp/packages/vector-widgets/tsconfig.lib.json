@@ -3,7 +3,8 @@
   "compilerOptions": {
     "declaration": true,
     "emitDeclarationOnly": false,
-    "outDir": "../../dist/packages/vector-widgets",
+    "rootDir": ".",
+    "outDir": "../../dist/build/vector-widgets",
     "types": ["node", "vitest/globals"]
   },
   "include": ["src/**/*.ts"],

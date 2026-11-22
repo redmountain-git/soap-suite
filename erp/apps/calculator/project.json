@@ -1,0 +1,110 @@
+{
+  "name": "calculator",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "rms",
+  "sourceRoot": "apps/calculator/src",
+  "tags": ["scope:public", "type:app", "framework:angular"],
+  "implicitDependencies": [
+    "calculator-core",
+    "vector-widgets",
+    "calculator-workbench"
+  ],
+  "targets": {
+    "typecheck": {
+      "dependsOn": [{ "projects": ["vector-widgets"], "target": "styles" }],
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "tsc -p apps/calculator/tsconfig.app.json --noEmit",
+          "tsc -p apps/calculator/tsconfig.spec.json --noEmit"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint apps/calculator/src --max-warnings=0"
+      }
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "executor": "@angular/build:application",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/calculator",
+        "browser": "apps/calculator/src/main.calculator.ts",
+        "index": {
+          "input": "apps/calculator/src/index.calculator.html",
+          "output": "index.html"
+        },
+        "baseHref": "/calculator/",
+        "tsConfig": "apps/calculator/tsconfig.app.json",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/calculator/public"
+          }
+        ],
+        "styles": ["apps/calculator/src/styles.scss"]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "750kb",
+              "maximumError": "1mb"
+            }
+          ],
+          "optimization": true,
+          "extractLicenses": true,
+          "sourceMap": false,
+          "outputHashing": "all",
+          "serviceWorker": "apps/calculator/ngsw-config.json"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "serviceWorker": false
+        }
+      }
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "@angular/build:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4318
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "calculator:build:production"
+        },
+        "development": {
+          "buildTarget": "calculator:build:development"
+        }
+      }
+    },
+    "test": {
+      "dependsOn": [{ "projects": ["vector-widgets"], "target": "styles" }],
+      "executor": "@angular/build:unit-test",
+      "options": {
+        "watch": false
+      }
+    },
+    "serve-static": {
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "calculator:build:production",
+        "port": 4318,
+        "staticFilePath": "dist/apps/calculator/browser",
+        "spa": true
+      }
+    }
+  }
+}

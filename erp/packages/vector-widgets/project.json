@@ -33,8 +33,9 @@
     "build": {
       "dependsOn": ["styles"],
       "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/packages/vector-widgets"],
       "options": {
-        "command": "tsc -p packages/vector-widgets/tsconfig.lib.json --noEmit"
+        "command": "node tools/clean-package.mjs vector-widgets && tsc -p packages/vector-widgets/tsconfig.lib.json && node tools/prepare-package.mjs vector-widgets"
       }
     },
     "lint": {

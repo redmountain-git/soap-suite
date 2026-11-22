@@ -6,15 +6,8 @@
   "sourceRoot": "apps/operations/src",
   "tags": [],
   "targets": {
-    "styles": {
-      "executor": "nx:run-commands",
-      "cache": false,
-      "options": {
-        "command": "npm run styles:build"
-      }
-    },
     "typecheck": {
-      "dependsOn": ["styles"],
+      "dependsOn": [{ "projects": ["vector-widgets"], "target": "styles" }],
       "executor": "nx:run-commands",
       "options": {
         "command": "tsc -p apps/operations/tsconfig.app.json --noEmit"
@@ -27,7 +20,7 @@
       }
     },
     "build": {
-      "dependsOn": ["styles"],
+      "dependsOn": [{ "projects": ["vector-widgets"], "target": "styles" }],
       "executor": "@angular/build:application",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
@@ -85,7 +78,7 @@
       }
     },
     "test": {
-      "dependsOn": ["styles"],
+      "dependsOn": [{ "projects": ["vector-widgets"], "target": "styles" }],
       "executor": "@angular/build:unit-test",
       "options": {
         "watch": false

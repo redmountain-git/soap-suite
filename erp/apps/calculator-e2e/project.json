@@ -1,0 +1,35 @@
+{
+  "name": "calculator-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/calculator-e2e/src",
+  "tags": ["scope:public", "type:e2e"],
+  "implicitDependencies": ["calculator"],
+  "targets": {
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc -p apps/calculator-e2e/tsconfig.json --noEmit"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint apps/calculator-e2e/src --max-warnings=0"
+      }
+    },
+    "e2e": {
+      "executor": "nx:run-commands",
+      "dependsOn": [
+        {
+          "projects": "calculator",
+          "target": "build",
+          "params": "ignore"
+        }
+      ],
+      "options": {
+        "command": "playwright test --config apps/calculator-e2e/playwright.config.mts"
+      }
+    }
+  }
+}
