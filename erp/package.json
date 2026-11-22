@@ -14,6 +14,7 @@
     "dev": "npm run styles:build && nx serve operations",
     "dev:legacy": "npm run styles:build && vite --config app/vite.config.ts --host 127.0.0.1",
     "build": "npm run styles:build && nx build operations --configuration=production",
+    "release:browser": "npm run build -- --base-href=/suite/ && node tools/package-browser-release.mjs",
     "preview": "nx run operations:serve-static",
     "typecheck": "nx run-many -t typecheck --all",
     "lint": "nx run-many -t lint --all",
