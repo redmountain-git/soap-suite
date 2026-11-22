@@ -1,0 +1,105 @@
+{
+  "name": "operations",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "rms",
+  "sourceRoot": "apps/operations/src",
+  "tags": [],
+  "targets": {
+    "styles": {
+      "executor": "nx:run-commands",
+      "cache": false,
+      "options": {
+        "command": "npm run styles:build"
+      }
+    },
+    "typecheck": {
+      "dependsOn": ["styles"],
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc -p apps/operations/tsconfig.app.json --noEmit"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint apps/operations/src --max-warnings=0"
+      }
+    },
+    "build": {
+      "dependsOn": ["styles"],
+      "executor": "@angular/build:application",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/operations",
+        "browser": "apps/operations/src/main.ts",
+        "tsConfig": "apps/operations/tsconfig.app.json",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/operations/public"
+          }
+        ],
+        "serviceWorker": false,
+        "styles": ["apps/operations/src/styles.scss"]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all",
+          "serviceWorker": "apps/operations/ngsw-config.json"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      }
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "@angular/build:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4200
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "operations:build:production"
+        },
+        "development": {
+          "buildTarget": "operations:build:development"
+        }
+      }
+    },
+    "test": {
+      "dependsOn": ["styles"],
+      "executor": "@angular/build:unit-test",
+      "options": {
+        "watch": false
+      }
+    },
+    "serve-static": {
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "operations:build",
+        "port": 4200,
+        "staticFilePath": "dist/apps/operations/browser",
+        "spa": true
+      }
+    }
+  }
+}

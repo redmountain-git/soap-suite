@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Receipts",
+  "type": "object",
+  "properties": {
+    "receipts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/receipt" }
+    }
+  },
+  "required": ["receipts"],
+  "additionalProperties": false,
+  "$defs": {
+    "money": {
+      "type": "number",
+      "minimum": 0
+    },
+    "paymentMethod": {
+      "type": "string",
+      "enum": [
+        "cash",
+        "debit",
+        "credit",
+        "check",
+        "online",
+        "debit_personal",
+        "credit_personal",
+        "debit_business",
+        "credit_business",
+        "owner_paid",
+        "unknown"
+      ]
+    },
+    "receipt": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "date": { "type": "string", "format": "date" },
+        "vendor": { "type": "string" },
+        "payment_method": { "$ref": "#/$defs/paymentMethod" },
+        "total": { "$ref": "#/$defs/money" },
+        "total_usd": { "$ref": "#/$defs/money" },
+        "tax_usd": { "$ref": "#/$defs/money" },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/lineItem" }
+        },
+        "notes": { "type": "string" }
+      },
+      "required": ["id", "date", "vendor", "payment_method", "items"],
+      "additionalProperties": false
+    },
+    "lineItem": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "sku": { "type": "string" },
+        "category": { "type": "string" },
+        "material": { "type": ["string", "null"] },
+        "quantity": {
+          "type": "number",
+          "minimum": 0
+        },
+        "unit": { "type": "string" },
+        "unit_price": { "$ref": "#/$defs/money" },
+        "total": { "$ref": "#/$defs/money" },
+        "amount_usd": { "$ref": "#/$defs/money" },
+        "account": { "type": "string" },
+        "notes": { "type": "string" }
+      },
+      "required": ["name", "account"],
+      "anyOf": [
+        { "required": ["total"] },
+        { "required": ["amount_usd"] }
+      ],
+      "additionalProperties": false
+    }
+  }
+}

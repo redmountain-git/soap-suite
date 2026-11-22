@@ -1,0 +1,81 @@
+units:
+
+  # Mass
+
+  g:
+    to_g: 1
+
+  gram:
+    to_g: 1
+
+  kg:
+    to_g: 1000
+
+  lb:
+    to_g: 453.592
+
+  lbs:
+    to_g: 453.592
+
+  oz:
+    to_g: 28.3495
+
+  ounce:
+    to_g: 28.3495
+
+
+  # Volume (metric)
+
+  ml:
+    to_ml: 1
+
+  milliliter:
+    to_ml: 1
+
+  L:
+    to_ml: 1000
+
+  l:
+    to_ml: 1000
+
+  liter:
+    to_ml: 1000
+
+
+  # Volume (US kitchen)
+
+  tsp:
+    to_ml: 4.92892
+
+  tbsp:
+    to_ml: 14.7868
+
+  cup:
+    to_ml: 236.588
+
+  pint:
+    to_ml: 473.176
+
+  quart:
+    to_ml: 946.353
+
+  gallon:
+    to_ml: 3785.41
+
+
+  # Volume (geometry)
+
+  in3:
+    to_ml: 16.387
+
+  inch3:
+    to_ml: 16.387
+
+
+  # Count / Discrete
+
+  each:
+    to_each: 1
+
+  unit:
+    to_each: 1

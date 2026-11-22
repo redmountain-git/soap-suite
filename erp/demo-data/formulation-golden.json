@@ -1,0 +1,7 @@
+{
+  "description": "Independent volume model: 1 g oil, 0.1/purity g alkali, twice that liquid, 0.05 g clay; all densities 1 g/ml.",
+  "cases": [
+    { "purity": 100, "volume": 270, "expected_oils": 200, "expected_lye": 20, "expected_liquid": 40, "expected_clay": 10 },
+    { "purity": 50, "volume": 330, "expected_oils": 200, "expected_lye": 40, "expected_liquid": 80, "expected_clay": 10 }
+  ]
+}

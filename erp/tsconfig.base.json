@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "types": [],
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "baseUrl": ".",
+    "paths": {
+      "@rmsc/domain-core": ["packages/domain-core/src/index.ts"],
+      "@rmsc/local-store": ["packages/local-store/src/index.ts"],
+      "@rmsc/soap-formulation": ["packages/soap-formulation/src/index.ts"],
+      "@rmsc/vector-widgets": ["packages/vector-widgets/src/index.ts"],
+      "@rmsc/vector-widgets/vector-math": [
+        "packages/vector-widgets/src/vector-math.ts"
+      ],
+      "@rmsc/worker-protocol": ["packages/worker-protocol/src/index.ts"]
+    }
+  }
+}

@@ -1,0 +1,35 @@
+raw_materials:
+  olive_oil:
+    unit: kg
+    on_hand: 6.0
+    avg_cost_per_unit: 6.40
+  coconut_oil:
+    unit: kg
+    on_hand: 4.5
+    avg_cost_per_unit: 5.80
+  lard:
+    unit: kg
+    on_hand: 5.0
+    avg_cost_per_unit: 4.20
+  castor_oil:
+    unit: g
+    on_hand: 900
+    avg_cost_per_unit: 0.032
+  naoh:
+    unit: g
+    on_hand: 1400
+    avg_cost_per_unit: 0.020
+  distilled_water:
+    unit: g
+    on_hand: 8000
+    avg_cost_per_unit: 0.001
+additives:
+  fragrance_oil:
+    unit: g
+    on_hand: 800
+    avg_cost_per_unit: 0.045
+  kaolin_clay:
+    unit: g
+    on_hand: 1000
+    avg_cost_per_unit: 0.012
+finished_goods: {}

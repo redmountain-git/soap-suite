@@ -1,0 +1,15 @@
+batches:
+  - id: B-DEMO-001
+    date: 2026-01-20
+    recipe_id: PR-DEMO-001
+    base_recipe_id: BSR-DEMO-001
+    product_recipe_id: PR-DEMO-001
+    oil_weight_g: 1800
+    status: planned
+    bars_expected: 12
+    material_usage_g: {}
+    extra_material_usage_g: {}
+    inventory_deducted: false
+    inventory_deducted_at: null
+    events: []
+    yield_actual: null

@@ -1,0 +1,43 @@
+﻿:host {
+  display: block;
+}
+.constraint-row {
+  display: grid;
+  grid-template-columns: minmax(90px, 1fr) 56px repeat(3, minmax(60px, 0.7fr));
+  gap: 8px;
+  align-items: end;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--_vector-line);
+}
+strong {
+  color: var(--_vector-ink);
+  font-size: 0.88rem;
+}
+span,
+label {
+  color: var(--_vector-muted);
+  font-size: 0.78rem;
+}
+input {
+  min-height: 30px;
+  width: 100%;
+  border: 1px solid var(--_vector-line);
+  border-radius: 8px;
+  padding: 0 8px;
+  background: var(--_vector-surface);
+  color: var(--_vector-ink);
+}
+input[type='checkbox'] {
+  inline-size: 20px;
+}
+@media (max-width: 720px) {
+  .constraint-row {
+    grid-template-columns: 1fr 56px;
+  }
+  label {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    grid-column: 1 / -1;
+    align-items: center;
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Recipes",
+  "type": "object",
+  "anyOf": [
+    { "required": ["base_recipes"] },
+    { "required": ["product_recipes"] }
+  ],
+  "properties": {
+    "base_recipes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/baseRecipe" }
+    },
+    "product_recipes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/productRecipe" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "percentageMap": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0
+      }
+    },
+    "baseRecipe": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "derived_from": { "type": "string" },
+        "status": { "enum": ["draft", "ready"] },
+        "review_required": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "notes": { "type": "string" },
+        "additive_handling": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "formulation_reference": { "type": "object" },
+        "oils_pct": { "$ref": "#/$defs/percentageMap" },
+        "lye": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string" },
+            "purity_percent": { "type": "number", "minimum": 0 },
+            "default_superfat_pct": { "type": "number", "minimum": 0 }
+          },
+          "required": ["type"],
+          "additionalProperties": true
+        },
+        "liquid": {
+          "type": "object",
+          "properties": {
+            "default_type": { "type": "string" },
+            "default_ratio": { "type": "number", "minimum": 0 },
+            "handling_notes": { "type": "string" }
+          },
+          "required": ["default_type"],
+          "additionalProperties": true
+        },
+        "additives_pct": { "$ref": "#/$defs/percentageMap" },
+        "quality_targets": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        }
+      },
+      "required": ["id", "name", "oils_pct", "lye", "liquid"],
+      "additionalProperties": false
+    },
+    "productRecipe": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "base_recipe_id": { "type": "string" },
+        "line": { "type": "string" },
+        "category": { "type": "string" },
+        "additives": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "fragrance": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "target_skin_type": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "compliance": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "pricing_targets": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "notes": { "type": "string" }
+      },
+      "required": ["id", "name", "base_recipe_id"],
+      "additionalProperties": false
+    }
+  }
+}

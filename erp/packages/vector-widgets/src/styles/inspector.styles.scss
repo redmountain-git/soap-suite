@@ -1,0 +1,46 @@
+﻿:host {
+  display: block;
+}
+.empty,
+.inspector {
+  border: 1px solid var(--_vector-line);
+  border-radius: 8px;
+  padding: 12px;
+  background: var(--_vector-surface-alt);
+}
+.empty {
+  color: var(--_vector-muted);
+}
+header {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.swatch {
+  inline-size: 12px;
+  block-size: 12px;
+  border-radius: 999px;
+  background: var(--item-color);
+}
+.range {
+  width: 100%;
+}
+.stepper {
+  display: grid;
+  grid-template-columns: 38px 1fr 38px;
+  gap: 6px;
+  margin-top: 8px;
+}
+button,
+input {
+  min-height: 34px;
+  border: 1px solid var(--_vector-line);
+  border-radius: 8px;
+  background: var(--_vector-surface);
+  color: var(--_vector-ink);
+}
+input {
+  padding: 0 8px;
+}

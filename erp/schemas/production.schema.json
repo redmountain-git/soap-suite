@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Production",
+  "type": "object",
+  "properties": {
+    "batches": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/batch"
+      }
+    }
+  },
+  "required": ["batches"],
+  "$defs": {
+    "event": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "prepped",
+            "poured",
+            "unmolded",
+            "cut",
+            "cure_started",
+            "cure_completed",
+            "shredded",
+            "child_created",
+            "posted_to_inventory"
+          ]
+        },
+        "at": {
+          "type": "string",
+          "format": "date"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "required": ["type", "at"],
+      "additionalProperties": false
+    },
+    "yieldActual": {
+      "type": "object",
+      "properties": {
+        "recorded_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "size_counts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "scrap_g": {
+          "type": "number",
+          "minimum": 0
+        },
+        "shredded_g": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": ["recorded_at", "size_counts", "scrap_g", "shredded_g"],
+      "additionalProperties": false
+    },
+    "batch": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "parent_batch_id": {
+          "type": ["string", "null"]
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "recipe_id": {
+          "type": ["string", "null"]
+        },
+        "base_recipe_id": {
+          "type": ["string", "null"]
+        },
+        "product_recipe_id": {
+          "type": ["string", "null"]
+        },
+        "oil_weight_g": {
+          "type": "number",
+          "minimum": 0
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "planned",
+            "prepped",
+            "poured",
+            "unmolded",
+            "cut",
+            "curing",
+            "cured",
+            "shredded",
+            "in_inventory"
+          ]
+        },
+        "bars_expected": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "bars_actual": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "material_usage_g": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "extra_material_usage_g": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "inventory_deducted": {
+          "type": "boolean"
+        },
+        "inventory_deducted_at": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "prepped_at": { "type": ["string", "null"], "format": "date" },
+        "poured_at": { "type": ["string", "null"], "format": "date" },
+        "unmolded_at": { "type": ["string", "null"], "format": "date" },
+        "cut_at": { "type": ["string", "null"], "format": "date" },
+        "cure_started_at": { "type": ["string", "null"], "format": "date" },
+        "cure_completed_at": { "type": ["string", "null"], "format": "date" },
+        "shredded_at": { "type": ["string", "null"], "format": "date" },
+        "posted_to_inventory_at": { "type": ["string", "null"], "format": "date" },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/event"
+          }
+        },
+        "yield_actual": {
+          "anyOf": [
+            { "$ref": "#/$defs/yieldActual" },
+            { "type": "null" }
+          ]
+        },
+        "notes": {
+          "type": "string"
+        },
+        "total_cost": {
+          "type": "number",
+          "minimum": 0
+        },
+        "cost_per_bar": {
+          "type": "number",
+          "minimum": 0
+        },
+        "costed": {
+          "type": "boolean"
+        }
+      },
+      "required": ["id", "oil_weight_g", "status"],
+      "additionalProperties": true
+    }
+  }
+}

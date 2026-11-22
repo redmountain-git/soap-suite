@@ -1,0 +1,128 @@
+﻿:host {
+  display: block;
+}
+.chart-shell {
+  display: grid;
+  gap: 12px;
+  align-items: center;
+  justify-items: center;
+  min-width: 0;
+}
+.pie-frame {
+  position: relative;
+  display: grid;
+  place-items: center;
+  inline-size: 100%;
+  max-inline-size: 330px;
+  min-inline-size: 220px;
+}
+.pie {
+  inline-size: 100%;
+  touch-action: none;
+}
+.decorator-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+::slotted([slot='slice-decorator']) {
+  position: absolute;
+  left: var(--decorator-x, -999px);
+  top: var(--decorator-y, -999px);
+  transform: translate(-50%, -50%)
+    translate(var(--decorator-offset-x, 0px), var(--decorator-offset-y, 0px));
+  pointer-events: none;
+}
+.base {
+  fill: var(--_vector-surface-strong);
+}
+.hole {
+  fill: var(--_vector-surface);
+  stroke: var(--_vector-line);
+  stroke-width: 1;
+}
+.slice {
+  stroke: var(--_vector-surface);
+  stroke-width: 1.5;
+  cursor: ns-resize;
+  transition:
+    transform 120ms ease,
+    stroke-width 120ms ease,
+    filter 120ms ease;
+  outline: none;
+}
+.slice:hover,
+.slice:focus,
+.slice.selected {
+  filter: brightness(1.04);
+  stroke: var(--_vector-ink);
+  stroke-width: 2;
+}
+.slice.hit {
+  stroke: var(--_vector-danger);
+  stroke-width: 3;
+  animation: pulse 900ms ease-in-out infinite alternate;
+}
+.center {
+  font:
+    700 18px system-ui,
+    sans-serif;
+  fill: var(--_vector-ink);
+}
+.center-label {
+  font:
+    11px system-ui,
+    sans-serif;
+  fill: var(--_vector-muted);
+}
+.legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(138px, 1fr));
+  gap: 6px;
+  inline-size: 100%;
+  min-width: 0;
+}
+.legend-item {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  min-height: 32px;
+  border: 1px solid var(--_vector-line);
+  border-radius: 8px;
+  background: var(--_vector-surface);
+  color: var(--_vector-ink);
+  text-align: left;
+  cursor: pointer;
+}
+.legend-item.selected {
+  border-color: var(--_vector-accent-strong);
+  box-shadow: 0 0 0 2px
+    color-mix(in srgb, var(--_vector-accent-strong) 12%, transparent);
+}
+.after-legend {
+  inline-size: 100%;
+  min-width: 0;
+}
+::slotted([slot='after-legend']) {
+  display: block;
+  inline-size: 100%;
+}
+.swatch {
+  inline-size: 12px;
+  block-size: 12px;
+  border-radius: 999px;
+  background: var(--item-color);
+}
+.disabled {
+  opacity: 0.55;
+  pointer-events: none;
+}
+@keyframes pulse {
+  from {
+    stroke-width: 2.5;
+  }
+  to {
+    stroke-width: 5;
+  }
+}

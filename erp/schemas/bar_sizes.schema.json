@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Bar Sizes",
+  "type": "object",
+  "propertyNames": {
+    "type": "string",
+    "pattern": "^bar_[0-9]+(_[0-9]+)?_oz$"
+  },
+  "additionalProperties": {
+    "type": "object",
+    "properties": {
+      "display_name": {
+        "type": "string"
+      },
+      "active": {
+        "type": "boolean"
+      },
+      "role": {
+        "type": "string"
+      },
+      "bottom_width_in": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "top_width_in": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "height_in": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "cut_depth_in": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "approx_volume_in3": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "notes": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "display_name",
+      "active",
+      "role",
+      "bottom_width_in",
+      "top_width_in",
+      "height_in",
+      "cut_depth_in",
+      "approx_volume_in3",
+      "notes"
+    ],
+    "additionalProperties": false
+  }
+}

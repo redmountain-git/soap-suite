@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Vendors",
+  "type": "object",
+
+  "properties": {
+    "vendors": {
+      "type": "object",
+
+      "additionalProperties": {
+        "$ref": "#/$defs/vendor"
+      }
+    }
+  },
+
+  "required": ["vendors"],
+
+  "$defs": {
+    "vendor": {
+      "type": "object",
+
+      "properties": {
+        "name": { "type": "string" },
+        "type": { "type": "string" },
+        "payment_terms": { "type": "string" },
+        "notes": { "type": "string" }
+      },
+
+      "required": ["name"]
+    }
+  }
+}

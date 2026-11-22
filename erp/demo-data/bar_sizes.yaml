@@ -1,0 +1,30 @@
+bar_1_0_oz:
+  display_name: 1.0 oz
+  active: true
+  role: Hospitality / guest bar
+  bottom_width_in: 1.75
+  top_width_in: 1.40
+  height_in: 2.00
+  cut_depth_in: 0.65
+  approx_volume_in3: 2.05
+  notes: Demo hospitality size.
+bar_5_2_oz:
+  display_name: 5.2 oz
+  active: true
+  role: Retail bar
+  bottom_width_in: 2.55
+  top_width_in: 2.05
+  height_in: 3.05
+  cut_depth_in: 1.50
+  approx_volume_in3: 10.52
+  notes: Demo retail default.
+bar_8_oz:
+  display_name: 8 oz
+  active: true
+  role: Specialty bar
+  bottom_width_in: 2.65
+  top_width_in: 2.15
+  height_in: 3.25
+  cut_depth_in: 2.08
+  approx_volume_in3: 16.22
+  notes: Demo specialty size.

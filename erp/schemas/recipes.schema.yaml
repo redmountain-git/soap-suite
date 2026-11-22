@@ -1,0 +1,159 @@
+type: object
+
+required:
+  - recipes
+
+properties:
+  recipes:
+    type: array
+    items:
+      type: object
+
+      required:
+        - name
+        - id
+        - version
+        - type
+        - oils
+        - lye
+        - liquid
+        - curing
+        - compliance
+
+      properties:
+
+        name:
+          type: string
+
+        id:
+          type: string
+
+        version:
+          type: number
+
+        status:
+          type: string
+          enum: [testing, active, retired]
+
+        approved_for_sale:
+          type: boolean
+
+        type:
+          type: string
+          enum: [cold_process, hot_process, melt_and_pour]
+
+        category:
+          type: string
+
+        line:
+          type: string
+
+        target_skin_type:
+          type: array
+          items:
+            type: string
+
+        batch_size:
+          type: object
+          required:
+            - oils_grams
+          properties:
+            oils_grams:
+              type: number
+            expected_yield_bars:
+              type: number
+            average_bar_weight_grams:
+              type: number
+
+        mold:
+          type: object
+          properties:
+            type:
+              type: string
+            material:
+              type: string
+            capacity_grams:
+              type: number
+
+        oils:
+          type: object
+          additionalProperties:
+            type: number
+
+        lye:
+          type: object
+          required:
+            - type
+            - superfat_percent
+          properties:
+            type:
+              type: string
+            purity_percent:
+              type: number
+            superfat_percent:
+              type: number
+
+        liquid:
+          type: object
+          required:
+            - type
+            - amount_grams
+          properties:
+            type:
+              type: string
+            amount_grams:
+              type: number
+            handling:
+              type: string
+
+        additives:
+          type: object
+          additionalProperties:
+            type: object
+
+        fragrance:
+          type: object
+          properties:
+            type:
+              type: string
+
+        process:
+          type: object
+          properties:
+            trace_target:
+              type: string
+            gel_phase:
+              type: string
+
+        curing:
+          type: object
+          required:
+            - minimum_days
+          properties:
+            minimum_days:
+              type: number
+            optimal_days:
+              type: number
+
+        compliance:
+          type: object
+          required:
+            - inci_name
+          properties:
+            inci_name:
+              type: string
+            allergens:
+              type: array
+              items:
+                type: string
+
+        pricing_targets:
+          type: object
+          properties:
+            target_cost_per_bar_usd:
+              type: number
+            target_retail_usd:
+              type: number
+
+        notes:
+          type: string

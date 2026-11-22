@@ -1,0 +1,35 @@
+﻿:host {
+  display: block;
+}
+.choice-control {
+  display: grid;
+  gap: 8px;
+}
+strong {
+  color: var(--_vector-ink);
+  font-size: 0.85rem;
+}
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+button {
+  min-height: 32px;
+  border: 1px solid var(--_vector-line);
+  border-radius: 8px;
+  background: var(--_vector-surface);
+  color: var(--_vector-ink);
+  padding: 0 10px;
+  cursor: pointer;
+}
+button.selected {
+  border-color: var(--_vector-accent-strong);
+  background: var(--_vector-accent-soft);
+  color: var(--_vector-accent-strong);
+  font-weight: 700;
+}
+button:disabled {
+  opacity: 0.58;
+  cursor: default;
+}

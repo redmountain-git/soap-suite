@@ -1,0 +1,15 @@
+product_recipes:
+  - id: PR-DEMO-001
+    name: Trail Demo Bar
+    base_recipe_id: BSR-DEMO-001
+    line: signature
+    category: scented
+    fragrance:
+      type: fragrance_oil
+      default_percent: 4
+      max_percent: 5
+    pricing_targets:
+      cost_per_bar_usd: 1.35
+      wholesale_usd: 4.50
+      retail_usd: 8.00
+    notes: Public demo product.

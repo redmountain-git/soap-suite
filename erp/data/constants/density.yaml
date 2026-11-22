@@ -1,0 +1,33 @@
+density:
+
+  # Oils & Fats (g/ml @ ~20–25°C)
+
+  olive_oil: 0.91
+  coconut_oil: 0.92
+  castor_oil: 0.96
+  lard: 0.92
+  shea_butter: 0.91
+
+
+  # Alkali & Liquids
+
+  naoh: 2.13          # solid flakes/crystals (bulk density approx)
+  water: 1.00
+  distilled_water: 1.00
+  goat_milk: 1.03
+  frozen_goat_milk: 1.03
+
+
+  # Additives / Powders (bulk density, approximate)
+
+  colloidal_oatmeal: 0.45
+  kaolin_clay: 0.60
+  activated_charcoal: 0.30
+  sugar: 0.85
+  honey: 1.42
+
+
+  # Fragrance / Essential Oils
+
+  fragrance_oil: 0.95
+  essential_oil: 0.90

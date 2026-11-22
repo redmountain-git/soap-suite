@@ -1,0 +1,36 @@
+﻿:host {
+  display: block;
+}
+.feedback {
+  display: grid;
+  gap: 6px;
+}
+button,
+.quiet {
+  min-height: 32px;
+  border-radius: 8px;
+  padding: 7px 10px;
+  font: inherit;
+  text-align: left;
+}
+button {
+  border: 1px solid var(--_vector-line);
+  background: var(--_vector-surface);
+  color: var(--_vector-ink);
+  cursor: pointer;
+}
+button.hard {
+  border-color: color-mix(in srgb, var(--_vector-danger) 45%, transparent);
+  color: var(--_vector-danger);
+  background: color-mix(in srgb, var(--_vector-danger) 8%, transparent);
+}
+button.soft {
+  border-color: color-mix(in srgb, var(--_vector-warning) 45%, transparent);
+  color: var(--_vector-warning);
+  background: color-mix(in srgb, var(--_vector-warning) 10%, transparent);
+}
+.quiet {
+  display: block;
+  color: var(--_vector-muted);
+  border: 1px dashed var(--_vector-line);
+}

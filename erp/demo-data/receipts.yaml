@@ -1,0 +1,31 @@
+receipts:
+  - id: R-DEMO-001
+    date: 2026-01-15
+    vendor: Demo Supply
+    payment_method: debit_business
+    total: 27.55
+    tax_usd: 3.50
+    items:
+      - name: Olive Oil
+        category: raw_material
+        material: olive_oil
+        quantity: 2
+        unit: kg
+        unit_price: 6.40
+        total: 12.80
+        account: assets.inventory.raw_materials
+      - name: Fragrance Oil
+        category: raw_material
+        material: fragrance_oil
+        quantity: 250
+        unit: g
+        unit_price: 0.045
+        total: 11.25
+        account: assets.inventory.additives
+      - name: Sales Tax
+        category: tax
+        material: null
+        quantity: 1
+        unit: each
+        total: 3.50
+        account: expenses.tax.sales_paid

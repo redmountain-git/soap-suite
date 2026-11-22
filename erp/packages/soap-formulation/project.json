@@ -1,0 +1,33 @@
+{
+  "name": "soap-formulation",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/soap-formulation/src",
+  "tags": ["scope:shared", "type:domain", "domain:soap"],
+  "targets": {
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc -p packages/soap-formulation/tsconfig.lib.json --noEmit && tsc -p packages/soap-formulation/tsconfig.spec.json --noEmit"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "vitest run --config packages/soap-formulation/vitest.config.ts"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc -p packages/soap-formulation/tsconfig.lib.json --noEmit"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint packages/soap-formulation/src --max-warnings=0"
+      }
+    }
+  }
+}

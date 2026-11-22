@@ -1,0 +1,47 @@
+{
+  "name": "vector-widgets",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/vector-widgets/src",
+  "tags": ["scope:shared", "type:ui", "framework:lit"],
+  "targets": {
+    "styles": {
+      "executor": "nx:run-commands",
+      "cache": false,
+      "options": {
+        "command": "npm run styles:build"
+      }
+    },
+    "typecheck": {
+      "dependsOn": ["styles"],
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "tsc -p packages/vector-widgets/tsconfig.lib.json --noEmit",
+          "tsc -p packages/vector-widgets/tsconfig.spec.json --noEmit"
+        ],
+        "parallel": false
+      }
+    },
+    "test": {
+      "dependsOn": ["styles"],
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "vitest run --config packages/vector-widgets/vitest.config.ts"
+      }
+    },
+    "build": {
+      "dependsOn": ["styles"],
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc -p packages/vector-widgets/tsconfig.lib.json --noEmit"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint packages/vector-widgets/src --max-warnings=0"
+      }
+    }
+  }
+}

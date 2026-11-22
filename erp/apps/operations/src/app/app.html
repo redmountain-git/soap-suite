@@ -1,0 +1,48 @@
+<div class="shell">
+  <aside class="sidebar" aria-label="Workspace">
+    <div class="brand">
+      <img src="./icons/icon.svg" alt="" width="34" height="34" />
+      <div>
+        <strong>Soap Suite</strong>
+        <span>{{ workspace.workspace()?.['name'] || 'Workspace' }}</span>
+        <span class="badge">{{ workspace.provider.label }}</span>
+      </div>
+    </div>
+
+    <nav class="tabs" aria-label="Sections">
+      @for (item of navItems; track item.path) {
+      <a
+        class="tab"
+        [routerLink]="item.path"
+        routerLinkActive="is-active"
+        [title]="item.title"
+      >
+        {{ item.label }}
+      </a>
+      }
+    </nav>
+  </aside>
+
+  <main class="workspace">
+    <header class="topbar">
+      <div>
+        <h1>Red Mountain Soap Suite</h1>
+        <p id="sync-state" [class.warning]="workspace.statusIsError()">
+          {{ workspace.statusMessage() }}
+        </p>
+        @if (workspace.retryRequest()) {
+        <button type="button" (click)="workspace.retrySave()">
+          Retry unconfirmed save
+        </button>
+        } @else if (!workspace.workspace() && workspace.statusIsError() &&
+        workspace.provider.mode !== 'invalid') {
+        <button type="button" (click)="workspace.refresh('getWorkspace')">
+          Reconnect
+        </button>
+        }
+      </div>
+    </header>
+
+    <router-outlet />
+  </main>
+</div>

@@ -1,0 +1,24 @@
+paths:
+  data: data
+  constants:
+    density: data/constants/density.yaml
+    sap_values: data/constants/sap_values.yaml
+    units: data/constants/units.yaml
+  inventory: data/inventory.yaml
+  inventory_meta: data/inventory_meta.yaml
+  production: data/production.yaml
+  bar_sizes: data/bar_sizes.yaml
+  batch_prep: batches
+  receipts: data/receipts.yaml
+  recipes:
+    base: data/recipes/base_recipes.yaml
+    product: data/recipes/product_recipes.yaml
+  transactions: data/transactions.yaml
+
+schemas:
+  inventory: schemas/inventory.schema.json
+  production: schemas/production.schema.json
+  bar_sizes: schemas/bar_sizes.schema.json
+  receipts: schemas/receipts.schema.json
+  recipes: schemas/recipes.schema.json
+  transactions: schemas/transactions.schema.json

@@ -1,0 +1,44 @@
+﻿:host {
+  display: block;
+}
+.unit-toggle {
+  display: grid;
+  gap: 5px;
+}
+.toggle-label {
+  color: var(--_vector-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+.toggle-options {
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 0;
+  padding: 3px;
+  border: 1px solid var(--_vector-line);
+  border-radius: 999px;
+  background: var(--_vector-surface-strong);
+}
+button {
+  min-height: 30px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--_vector-ink);
+  padding: 0 11px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+button.selected {
+  background: var(--_vector-surface);
+  color: var(--_vector-accent-strong);
+  font-weight: 700;
+  box-shadow: 0 1px 4px color-mix(in srgb, var(--_vector-ink) 14%, transparent);
+}
+button:disabled {
+  opacity: 0.58;
+  cursor: default;
+}

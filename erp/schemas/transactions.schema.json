@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Transactions",
+  "type": "object",
+
+  "properties": {
+    "transactions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/transaction" }
+    }
+  },
+
+  "required": ["transactions"],
+
+  "$defs": {
+    "transaction": {
+      "type": "object",
+
+      "properties": {
+        "id": { "type": "string" },
+        "date": { "type": "string", "format": "date" },
+        "description": { "type": "string" },
+
+        "debit": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+
+        "credit": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+
+        "receipt": { "type": "string" }
+      },
+
+      "required": ["id", "date", "debit", "credit"]
+    }
+  }
+}

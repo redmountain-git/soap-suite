@@ -1,0 +1,307 @@
+﻿:host {
+  display: block;
+}
+* {
+  box-sizing: border-box;
+}
+.empty,
+.rail-control {
+  border: 1px solid var(--_vector-line);
+  border-radius: 8px;
+  padding: 12px;
+  background: var(--_vector-surface-alt);
+}
+.empty {
+  color: var(--_vector-muted);
+}
+header {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr) auto auto;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.swatch {
+  inline-size: 12px;
+  block-size: 12px;
+  border-radius: 999px;
+  background: var(--item-color);
+}
+strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+output {
+  color: var(--_vector-ink);
+  font-weight: 700;
+}
+button,
+input {
+  font: inherit;
+}
+.lock-button {
+  display: inline-grid;
+  place-items: center;
+  inline-size: 34px;
+  min-height: 30px;
+  border: 1px solid var(--_vector-line);
+  border-radius: 8px;
+  background: var(--_vector-surface);
+  color: var(--_vector-ink);
+  padding: 0;
+  cursor: pointer;
+  font-weight: 800;
+  line-height: 1;
+}
+.lock-button.locked {
+  border-color: var(--_vector-accent-strong);
+  background: var(--_vector-accent-soft);
+  color: var(--_vector-accent-strong);
+  font-weight: 700;
+}
+.rail-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+}
+.embedded {
+  padding: 10px 12px 12px;
+}
+.embedded .rail-body {
+  grid-template-columns: minmax(0, 1fr) 34px;
+}
+.rail {
+  position: relative;
+  block-size: 86px;
+  margin: 0 12px 4px;
+  touch-action: none;
+}
+.embedded .rail {
+  margin-inline: 12px 4px;
+}
+.full-track,
+.allowed-track,
+.threshold-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40px;
+  block-size: 8px;
+  border-radius: 999px;
+}
+.full-track {
+  background: var(--_vector-track);
+}
+.threshold-track {
+  overflow: hidden;
+  background: transparent;
+  z-index: 1;
+}
+.threshold-band {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--threshold-start);
+  width: var(--threshold-width);
+  background: var(
+    --threshold-color,
+    color-mix(in srgb, var(--_vector-accent-strong) 35%, transparent)
+  );
+}
+.threshold-band.ok {
+  background: var(
+    --threshold-color,
+    color-mix(in srgb, var(--_vector-ok) 42%, transparent)
+  );
+}
+.threshold-band.warn {
+  background: var(
+    --threshold-color,
+    color-mix(in srgb, var(--_vector-warning) 46%, transparent)
+  );
+}
+.threshold-band.danger {
+  background: var(
+    --threshold-color,
+    color-mix(in srgb, var(--_vector-danger) 48%, transparent)
+  );
+}
+.threshold-band.active {
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--_vector-ink) 30%, transparent);
+}
+.allowed-track {
+  left: var(--range-start);
+  right: auto;
+  width: var(--range-width);
+  background: color-mix(in srgb, var(--_vector-allowed) 38%, transparent);
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--_vector-accent-strong) 16%, transparent);
+}
+.default-marker {
+  position: absolute;
+  top: 32px;
+  block-size: 24px;
+  inline-size: 2px;
+  background: var(--_vector-ink-soft);
+  border-radius: 999px;
+  opacity: 0.58;
+  left: var(--rail-position);
+}
+.handle {
+  position: absolute;
+  top: 28px;
+  display: grid;
+  place-items: center;
+  inline-size: 34px;
+  block-size: 34px;
+  margin-left: -17px;
+  border: 0;
+  background: transparent;
+  color: var(--_vector-ink);
+  cursor: ew-resize;
+  padding: 0;
+  outline-offset: 4px;
+  left: var(--rail-position);
+}
+.handle,
+.default-marker {
+  z-index: 2;
+}
+.handle-dot {
+  display: grid;
+  place-items: center;
+  inline-size: 18px;
+  block-size: 18px;
+  border: 2px solid var(--_vector-accent);
+  background: var(--_vector-surface);
+  color: var(--_vector-accent-strong);
+  font-size: 0.65rem;
+  font-weight: 800;
+  line-height: 1;
+}
+.min .handle-dot,
+.max .handle-dot {
+  border-radius: 999px;
+}
+.value .handle-dot {
+  inline-size: 22px;
+  block-size: 22px;
+  border-color: var(--_vector-accent-strong);
+  background: var(--_vector-accent-strong);
+  color: var(--_vector-surface);
+  transform: rotate(45deg);
+}
+.value.locked .handle-dot {
+  border-color: var(--_vector-accent-strong);
+  background: var(--_vector-accent-soft);
+  color: var(--_vector-accent-strong);
+  transform: none;
+  border-radius: 7px;
+}
+.handle-label,
+.handle-value {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease;
+  white-space: nowrap;
+}
+.handle-label {
+  top: -20px;
+  color: var(--_vector-muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+.handle-value {
+  top: 34px;
+  color: var(--_vector-ink);
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+.rail:hover .handle-label,
+.rail:hover .handle-value,
+.handle:focus .handle-label,
+.handle:focus .handle-value,
+.rail-control.dragging .handle-label,
+.rail-control.dragging .handle-value,
+.handle.active .handle-label,
+.handle.active .handle-value {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+.handle.hit .handle-dot {
+  border-color: var(--_vector-danger);
+  animation: railPulse 700ms ease-in-out infinite alternate;
+}
+.exact-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 6px;
+}
+.embedded .exact-row {
+  margin-right: 42px;
+}
+label {
+  display: grid;
+  gap: 5px;
+  color: var(--_vector-muted);
+  font-size: 0.76rem;
+}
+input,
+select {
+  min-height: 32px;
+  width: 100%;
+  border: 1px solid var(--_vector-line);
+  border-radius: 8px;
+  background: var(--_vector-surface);
+  color: var(--_vector-ink);
+  padding: 0 8px;
+}
+input:disabled,
+select:disabled,
+button:disabled {
+  opacity: 0.58;
+  background: var(--_vector-surface-strong);
+  cursor: default;
+}
+.unit-row {
+  margin-top: 8px;
+}
+.disabled {
+  opacity: 0.65;
+  pointer-events: none;
+}
+@keyframes railPulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.28);
+  }
+}
+@media (max-width: 720px) {
+  header {
+    grid-template-columns: 14px minmax(0, 1fr) auto;
+  }
+  .lock-button {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+  .embedded .lock-button {
+    grid-column: auto;
+    justify-self: stretch;
+  }
+  .exact-row {
+    grid-template-columns: 1fr;
+  }
+  .embedded .exact-row {
+    margin-right: 0;
+  }
+}

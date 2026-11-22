@@ -1,0 +1,22 @@
+base_recipes:
+  - id: BSR-DEMO-001
+    name: Desert Demo Base
+    oils_pct:
+      olive_oil: 48
+      coconut_oil: 19
+      lard: 25
+      castor_oil: 8
+    lye:
+      type: NaOH
+      purity_percent: 98
+      default_superfat_pct: 5
+    liquid:
+      default_type: distilled_water
+      default_ratio: 0.31
+    additives_pct:
+      kaolin_clay: 0.75
+    quality_targets:
+      hardness: high
+      bubbles: high
+      conditioning: medium_high
+      longevity: high

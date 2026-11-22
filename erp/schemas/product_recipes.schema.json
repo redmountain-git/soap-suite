@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["product_recipes"],
+
+  "properties": {
+    "product_recipes": {
+      "type": "array",
+
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "id",
+          "base_recipe_id",
+          "line",
+          "category"
+        ],
+
+        "properties": {
+          "name": { "type": "string" },
+
+          "id": {
+            "type": "string",
+            "pattern": "^PR-[0-9]{3}$"
+          },
+
+          "base_recipe_id": {
+            "type": "string",
+            "pattern": "^BSR-[0-9]{3}$"
+          },
+
+          "line": { "type": "string" },
+          "category": { "type": "string" },
+
+          "additives": {
+            "type": "object",
+
+            "additionalProperties": {
+              "type": "object",
+
+              "properties": {
+                "percent_of_oils": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 10
+                },
+
+                "optional": { "type": "boolean" },
+
+                "grind": { "type": "string" }
+              }
+            }
+          },
+
+          "fragrance": {
+            "type": "object"
+          },
+
+          "target_skin_type": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+
+          "pricing_targets": {
+            "type": "object",
+
+            "properties": {
+              "cost_per_bar_usd": { "type": "number" },
+              "wholesale_usd": { "type": "number" },
+              "retail_usd": { "type": "number" }
+            }
+          },
+
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  }
+}

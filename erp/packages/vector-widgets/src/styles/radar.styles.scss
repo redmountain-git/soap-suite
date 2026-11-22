@@ -1,0 +1,110 @@
+﻿:host {
+  display: block;
+}
+.chart-shell {
+  display: grid;
+  gap: 12px;
+  place-items: center;
+  min-width: 0;
+}
+.radar {
+  inline-size: 100%;
+  max-inline-size: 460px;
+  min-inline-size: 260px;
+  overflow: visible;
+  touch-action: none;
+}
+.grid-ring {
+  fill: none;
+  stroke: var(--_vector-line);
+  stroke-width: 0.8;
+}
+.axis {
+  stroke: var(--_vector-line);
+  stroke-width: 0.8;
+}
+.axis-label {
+  font:
+    10px system-ui,
+    sans-serif;
+  fill: var(--_vector-ink-soft);
+}
+.axis-label.selected {
+  font-weight: 800;
+  fill: var(--_vector-accent-strong);
+}
+.preferred {
+  fill: color-mix(in srgb, var(--_vector-accent-strong) 8%, transparent);
+  stroke: color-mix(in srgb, var(--_vector-accent-strong) 35%, transparent);
+  stroke-dasharray: 3 3;
+}
+.reachable {
+  fill: color-mix(in srgb, var(--_vector-reach) 13%, transparent);
+  stroke: color-mix(in srgb, var(--_vector-reach) 30%, transparent);
+}
+.current {
+  fill: color-mix(in srgb, var(--_vector-accent) 22%, transparent);
+  stroke: var(--_vector-accent);
+  stroke-width: 2;
+}
+.preview {
+  fill: color-mix(in srgb, var(--_vector-preview) 16%, transparent);
+  stroke: var(--_vector-preview);
+  stroke-width: 2;
+  stroke-dasharray: 4 3;
+}
+.target-dot {
+  fill: var(--_vector-preview);
+  stroke: var(--_vector-surface);
+  stroke-width: 1;
+}
+.marble {
+  fill: var(--_vector-surface);
+  stroke: var(--_vector-accent);
+  stroke-width: 2;
+  cursor: grab;
+  outline: none;
+}
+.marble:hover,
+.marble:focus,
+.marble.selected {
+  stroke: var(--_vector-ink);
+  stroke-width: 3;
+}
+.marble.hit {
+  stroke: var(--_vector-danger);
+  animation: pulse 900ms ease-in-out infinite alternate;
+}
+.value-label {
+  font:
+    700 10px system-ui,
+    sans-serif;
+  fill: var(--_vector-ink);
+  stroke: var(--_vector-surface);
+  stroke-width: 3;
+  paint-order: stroke;
+  pointer-events: none;
+}
+.value-label.selected {
+  fill: var(--_vector-accent-strong);
+}
+.after-chart {
+  inline-size: 100%;
+  min-width: 0;
+}
+::slotted([slot='after-chart']) {
+  display: block;
+  inline-size: 100%;
+}
+.disabled {
+  opacity: 0.55;
+  pointer-events: none;
+}
+@keyframes pulse {
+  from {
+    r: 6;
+  }
+  to {
+    r: 8;
+  }
+}

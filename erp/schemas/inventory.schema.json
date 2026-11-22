@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Inventory",
+  "type": "object",
+
+  "properties": {
+    "raw_materials": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/inventoryItem"
+      }
+    },
+
+    "additives": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/inventoryItem"
+      }
+    },
+
+    "finished_goods": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/inventoryItem"
+      }
+    }
+  },
+
+  "required": ["raw_materials", "finished_goods"],
+
+  "$defs": {
+    "inventoryItem": {
+      "type": "object",
+
+      "properties": {
+        "unit": { "type": "string" },
+        "on_hand": {
+          "type": "number",
+          "minimum": 0
+        },
+        "avg_cost_per_unit": {
+          "type": "number",
+          "minimum": 0
+        },
+        "cost_per_unit": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+
+      "required": ["unit", "on_hand"]
+    }
+  }
+}

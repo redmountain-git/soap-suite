@@ -1,0 +1,28 @@
+sap_values:
+  naoh:
+    olive_oil: 0.134
+    coconut_oil: 0.183
+    lard: 0.138
+    castor_oil: 0.128
+    shea_butter: 0.128
+    cocoa_butter: 0.137
+    avocado_oil: 0.133
+    sweet_almond_oil: 0.136
+    sunflower_oil: 0.135
+    rice_bran_oil: 0.128
+    jojoba_oil: 0.066
+    palm_oil: 0.142
+
+  koh:   # if you ever do liquid soap
+    olive_oil: 0.188
+    coconut_oil: 0.257
+    lard: 0.194
+    castor_oil: 0.180
+    shea_butter: 0.179
+    cocoa_butter: 0.193
+    avocado_oil: 0.191
+    sweet_almond_oil: 0.190
+    sunflower_oil: 0.189
+    rice_bran_oil: 0.179
+    jojoba_oil: 0.093
+    palm_oil: 0.199

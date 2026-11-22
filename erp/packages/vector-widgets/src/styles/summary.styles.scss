@@ -1,0 +1,67 @@
+﻿:host {
+  display: block;
+}
+.summary-meter {
+  display: grid;
+  gap: 6px;
+}
+.summary-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(82px, 0.8fr) auto;
+  gap: 8px;
+  align-items: center;
+  min-height: 34px;
+  border: 1px solid var(--_vector-line);
+  border-radius: 8px;
+  background: var(--_vector-surface);
+  color: var(--_vector-ink);
+  padding: 6px 8px;
+  text-align: left;
+  cursor: pointer;
+}
+.summary-row.warn {
+  border-color: color-mix(
+    in srgb,
+    var(--_vector-warning) 55%,
+    var(--_vector-line)
+  );
+}
+.summary-row.danger {
+  border-color: color-mix(
+    in srgb,
+    var(--_vector-danger) 55%,
+    var(--_vector-line)
+  );
+  color: var(--_vector-danger);
+}
+.summary-track {
+  position: relative;
+  block-size: 7px;
+  border-radius: 999px;
+  background: var(--_vector-track);
+  overflow: hidden;
+}
+.summary-track span {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  border-radius: inherit;
+  background: var(--_vector-accent-strong);
+  width: var(--meter-fill);
+}
+.warn .summary-track span {
+  background: var(--_vector-warning);
+}
+.danger .summary-track span {
+  background: var(--_vector-danger);
+}
+strong {
+  font-size: 0.78rem;
+}
+.quiet {
+  min-height: 34px;
+  border: 1px dashed var(--_vector-line);
+  border-radius: 8px;
+  color: var(--_vector-muted);
+  padding: 8px 10px;
+}

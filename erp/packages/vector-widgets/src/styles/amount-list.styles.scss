@@ -1,0 +1,14 @@
+﻿:host {
+  display: block;
+}
+.amount-list {
+  display: grid;
+  gap: 8px;
+}
+.quiet {
+  min-height: 34px;
+  border: 1px dashed var(--_vector-line);
+  border-radius: 8px;
+  color: var(--_vector-muted);
+  padding: 8px 10px;
+}
